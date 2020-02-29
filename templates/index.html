@@ -1,0 +1,13 @@
+{% load static %}
+<link href="{% static "/css/style.css" %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div id="buttonWrapper" class="wrapper">
+        <a id="loginButton" class="waves-effect waves-light black white-text btn"
+           href="{% url 'social:begin' 'vk-oauth2' %}">Войти с помощью ВК</a>
+    </div>
+</body>
+</html>

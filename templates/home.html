@@ -1,0 +1,47 @@
+{% load static %}
+<link href="{% static "/css/style.css" %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+<script src="{% static '/js/search.js' %}" defer></script>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div id="container">
+        <div class="card light-blue accent-3">
+            <div class="card-content white-text center">
+                {% for i in backends.associated %}
+                    {% if i.provider == 'vk-oauth2' %}
+                        <span class="card-title">Добро пожаловать
+                            {{ user.first_name }} {{ user.last_name }}<p>
+                            Кол-во друзей {{ friends_count }}
+                        </span>
+                    {% endif %}
+                {% endfor %}
+                <div class="row">
+                    <div class="col">
+                        <img src="{{ photo }}"  alt="">
+                    </div>
+                    <div class="col" id="friends_col">
+                        <ul>
+                            {% for friend in first_five %}
+                                <li>{{ friend }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div id="buttonBar">
+                    <a class="waves-effect waves-light black white-text btn" href="{% url 'logout' %}">Выйти</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-content">
+            <label for="searchInput"></label><input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Поиск...">
+            <ul id="myUL">
+                {% for friend, friends_links_i in friends_list %}
+                    <li><a href={{ friends_links_i }} target="_blank">{{ friend }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+</div>
+</body>
+</html>
